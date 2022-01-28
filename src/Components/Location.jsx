@@ -4,8 +4,8 @@ import { useState } from "react";
 import Input from "./Input";
 
 export default function Location() {
-  const [country, setCountry] = useState();
-  const [city, setCity] = useState();
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
   const [weather, setWeather] = useState();
   return (
     <>
@@ -19,8 +19,8 @@ export default function Location() {
             justifyContent: "space-between",
           }}
         >
-          <Input type={"country"} aria-label="Select a country please" />
-          <Input type={"city"} aria-label="Select a city please" />
+          <Input type={"Country"} setCountry={setCountry} country={country} aria-label="Select a country please" />
+          <Input type={"City"} setCity={setCity} city={city} aria-label="Select a city please" />
         </Box>
         <Box
           sx={{

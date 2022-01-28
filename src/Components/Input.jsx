@@ -1,83 +1,78 @@
-import { TextField, Box, Autocomplete, CircularProgress } from "@mui/material";
-import {useState, useEffect, Fragment} from "react"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, Fragment } from "react";
+import { Country, City } from "country-state-city";
+import { FormControl, Box, InputLabel, Select, MenuItem } from "@mui/material";
 
-export default function Input() {
-const [open, setOpen] = useState(false);
-const [options, setOptions] = useState([]);
-const loading = open && options.length === 0;
+export default function Input({ type, setCountry, country, setCity, city }) {
+  const [countryOp, setCountryOp] = useState([]);
+  const [cityOp, setCityOp] = useState([]);
 
-useEffect(() => {
-  let active = true;
+  useEffect(() => {
+    //let countries = [];
+    //let cities = [];
 
-  if (!loading) {
-    return undefined;
-  }
+    const countries = Country.getAllCountries().map((info) => {
+      info.label = info["name"];
+      return info;
+    });
+    setCountryOp(countries);
 
-  (async () => {
-    // await sleep(1e3); 
-
-    if (active) {
-      // setOptions([...topFilms]);
+    if (country !== "" && country !== undefined) {
+      const cities = City.getCitiesOfCountry(country.isoCode).map((info) => {
+        info.label = info["name"];
+        return info;
+      });
+      console.log(cities);
+      setCityOp(cities);
+      console.log(cityOp);
     }
-  })();
+  }, [country]);
 
-  return () => {
-    active = false;
-  };
-}, [loading]);
+  return (
+    <Box sx={{ width: "45%" }}>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        {type === "Country" ? (
+          <>
+            <InputLabel id={`${type}-label`}>{type}</InputLabel>
+            <Select
+              labelId={`${type}-label`}
+              id={type}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              label={type}
+            >
+              {countryOp.map((country) => (
+                <MenuItem value={country} key={country.isoCode}>
+                  {country.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </>
+        ) : null}
 
-useEffect(() => {
-  if (!open) {
-    setOptions([]);
-  }
-}, [open]);
-
-
-
-
-    const countries = [
-    { name: "Mexico" },
-    { name: "Brasil" },
-    { name: "Australia" },
-  ].map((obj) => (obj.label = obj["name"]));
-    const cities = [
-      { name: "Mexico City" },
-      { name: "Sao Paulo" },
-      { name: "Melbourne" },
-    ].map((obj) => (obj.label = obj["name"]));
-    return (
-      <Box sx={{width:"45%"}}>
-        <Autocomplete
-          id="asynchronous-demo"
-          open={open}
-          onOpen={() => {
-            setOpen(true);
-          }}
-          onClose={() => {
-            setOpen(false);
-          }}
-          isOptionEqualToValue={(option, value) => option.title === value.title}
-          getOptionLabel={(option) => option.title}
-          options={options}
-          loading={loading}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Asynchronous"
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <Fragment>
-                    {loading ? (
-                      <CircularProgress color="inherit" size={20} />
-                    ) : null}
-                    {params.InputProps.endAdornment}
-                  </Fragment>
-                ),
-              }}
-            />
-          )}
-        />
-      </Box>
-    );
+        {type === "City" ? (
+          <>
+            <InputLabel id={`${type}-label`}>{type}</InputLabel>
+            <Select
+              labelId={`${type}-label`}
+              id={type}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              label={type}
+            >
+              {cityOp.length>0 ? (
+                cityOp.map((city) => (
+                  <MenuItem value={city} key={city.name}>
+                    {city.name}
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem value="">Please select a Country</MenuItem>
+              )}
+            </Select>
+          </>
+        ) : null}
+      </FormControl>
+    </Box>
+  );
 }

@@ -40,7 +40,7 @@ export default function Home() {
         <Location />
         <Location />
       </Container>
-      <Box component="footer" sx={{ position: "relative", bottom: "2%", right:"2%" }}>
+      <Box component="footer" /* sx={{ position: "relative", bottom: "2%", right:"2%" }} */>
         <Typography sx={{ ...color, textAlign: "right" }}>
           Made by <Link href="https://github.com/emmaspace">@emmaspace</Link>
         </Typography>
