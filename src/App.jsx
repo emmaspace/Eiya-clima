@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import { Location, Header } from "./Components";
 import { Box } from "@mui/material";
