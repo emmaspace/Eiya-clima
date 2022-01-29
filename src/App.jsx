@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
-import {Location} from "./Components"
+import { Location, Header } from "./Components";
 
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
-      <Location/>
+      <Header />
+      <Location />
+      <Location />
     </div>
   );
 }

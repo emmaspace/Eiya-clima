@@ -1,16 +1,41 @@
 import { useEffect, useState } from "react";
 import { Input } from "../Input";
-import { Country/* , City */ } from "country-state-city";
+import { Country /* , City */ } from "country-state-city";
 import { Container, Box, Typography } from "@mui/material";
 
 export function Location() {
   const [country, setCountry] = useState("");
   // const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState([]);
+  const [error, setError] = useState("");
 
   const apiKey = "b63c9b150d1c5296a1977467ff024ef9";
 
-  useEffect(()=>{/* weather */},[country])
+  const getWeather = async (lat, lon) => {
+    const controller = new AbortController();
+    const options = {
+      signal: controller.signal,
+      method: "GET",
+    };
+    setTimeout(() => controller.abort(), 10000);
+
+    try {
+      const info = await (await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts,current&appid=${apiKey}`,
+        options
+      )).json();
+      console.log(info);
+      setWeather(info.daily);
+      setError("");
+    } catch {
+      console.log("no salió");
+      setError("algo salió mal, vuelve a intentar más tarde");
+    }
+  };
+
+  useEffect(() => {
+    if (country) getWeather(country.latitude, country.longitude);
+  }, [country]);
 
   const countries = Country.getAllCountries().map((info) => {
     info.label = info["name"];
@@ -31,8 +56,12 @@ export function Location() {
           <Typography>Please select a country</Typography>
         ) : !weather ? (
           <Typography>Loading...</Typography>
+        ) : !error ? (
+          <Box>
+            <Typography>Yastá</Typography>
+          </Box>
         ) : (
-          <Box></Box>
+          <Typography>{error}</Typography>
         )}
       </Container>
     </>

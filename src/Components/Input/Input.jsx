@@ -4,7 +4,7 @@ import { FormControl, Box, InputLabel, Select, MenuItem } from "@mui/material";
 export function Input({ children, location, setInfo, options }) {
   return (
     <Box>
-      <FormControl variant="standard">
+      <FormControl variant="standard" sx={{ width: "15em" }}>
         <InputLabel id={`${children}-label`}>{children}</InputLabel>
         <Select
           labelId={`${children}-label`}
