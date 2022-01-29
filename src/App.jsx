@@ -1,12 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
-import {Location} from "./Components"
+import { Location, Header } from "./Components";
+import { Box } from "@mui/material";
 
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
-      <Location/>
+      <Header />
+      <Box sx={{
+        display: "flex", flexDiection:"row", justifyContent:"space-around",}}>
+        <Location />
+        <Location />
+      </Box>
     </div>
   );
 }
