@@ -3,6 +3,16 @@ import { Input } from "../Input";
 import { Country /* , City */ } from "country-state-city";
 import { Container, Box, Typography } from "@mui/material";
 
+const text = {
+  textAlign: "center",
+  color: "#002764",
+  fontFamily: "'Montserrat', sans-serif",
+  fontSize: "1.5em",
+  mb:"0.5em"
+};
+
+const borderColors = ["#3A86FF", "#FF006E", "#FFBE0B", "#FB5607"];
+
 export function Location() {
   const [country, setCountry] = useState("");
   // const [city, setCity] = useState("");
@@ -65,15 +75,28 @@ export function Location() {
         }}
       >
         {!country ? (
-          <Typography>Please select a country</Typography>
-        ) : weather.length===0 ? (
-          <Typography>Loading...</Typography>
+          <Typography sx={{ ...text }}>Please select a country</Typography>
+        ) : weather.length === 0 ? (
+          <Typography sx={{ ...text }}>Loading...</Typography>
         ) : !error ? (
           <Box>
-            <Typography>{`Weather in ${country.name}`}</Typography>
+            <Typography
+              sx={{ ...text }}
+            >{`Weather in ${country.name}`}</Typography>
             {weather.map((info) => (
-              <Box>
-                <Typography>{`Date: ${info.dt}`}</Typography>
+              <Box
+                sx={{
+                  border: `3px solid ${
+                    borderColors[
+                      Math.floor(Math.random() * borderColors.length)
+                    ]
+                  }`,
+                  borderRadius: "1em",
+                  mb: "0.5em",
+                  p:"0.5em"
+                }}
+              >
+                {/* <Typography>{`Date: ${new Date(info.dt).toString()}`}</Typography> */}
                 <Typography>{`${info.weather[0].main}: ${info.weather[0].description}`}</Typography>
                 <Typography>{`Temperature: ${info.temp.day}`}</Typography>
                 <Typography>{`Min: ${info.temp.min}`}</Typography>
