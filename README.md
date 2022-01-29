@@ -1,16 +1,16 @@
-#Eiya tech challenge
+# Eiya tech challenge
 
-
-##Project summary
+[Link to page](https://eiya-weather.netlify.app/)
+## Project summary
 
 Weather app in which a traveller can compare the weather in two different places to decide their best option. 
 
-##Planning process
+## Planning process
 
 - The technologies and APIs to be used were selected and tested.
 - A github project was created and its respective issues were created and edited as needed.
 
-##Making process
+## Making process
 
 - A color palette was defined.
 - A logo for the web page was created in Canva.
@@ -20,7 +20,7 @@ Weather app in which a traveller can compare the weather in two different places
 
 The complete Figma design can be found [here](https://www.figma.com/file/D9e36XKKk8iGzx2JqA1fms/Untitled?node-id=14%3A203).
 
-##Tools and technologies
+## Tools and technologies
 
 - Canva
 - Figma
