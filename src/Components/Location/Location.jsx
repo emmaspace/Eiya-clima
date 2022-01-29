@@ -20,10 +20,12 @@ export function Location() {
     setTimeout(() => controller.abort(), 10000);
 
     try {
-      const info = await (await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts,current&appid=${apiKey}`,
-        options
-      )).json();
+      const info = await (
+        await fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts,current&appid=${apiKey}&units=metric`,
+          options
+        )
+      ).json();
       console.log(info);
       setWeather(info.daily);
       setError("");
@@ -41,8 +43,9 @@ export function Location() {
     info.label = info["name"];
     return info;
   });
+
   return (
-    <>
+    <Box>
       <Input
         setInfo={setCountry}
         location={country}
@@ -51,20 +54,42 @@ export function Location() {
       >
         Countries
       </Input>
-      <Container>
+      <Container
+        sx={{
+          border: "5px solid #8338EC",
+          minHeight: "50vh",
+          borderRadius: "3em",
+          width: "40vw",
+          mt: "1em",
+          p: "1em",
+        }}
+      >
         {!country ? (
           <Typography>Please select a country</Typography>
         ) : !weather ? (
           <Typography>Loading...</Typography>
         ) : !error ? (
           <Box>
-            <Typography>Yastá</Typography>
+            <Typography>{`Weather in ${country.name}`}</Typography>
+            {weather.map((info) => (
+              <Box>
+                <Typography>{`Date: ${info.dt}`}</Typography>
+                <Typography>{`${info.weather[0].main}: ${info.weather[0].description}`}</Typography>
+                <Typography>{`Temperature: ${info.temp.day}`}</Typography>
+                <Typography>{`Min: ${info.temp.min}`}</Typography>
+                <Typography>{`Max: ${info.temp.max}`}</Typography>
+                <Typography>{`UVI: ${info.uvi}`}</Typography>
+                <Typography>{`Precipitation: ${info.uvi}`}</Typography>
+                <Typography>{`Humidity: ${info.uvi}`}</Typography>
+                <Typography>{`Clouds: ${info.uvi}`}</Typography>
+              </Box>
+            ))}
           </Box>
         ) : (
           <Typography>{error}</Typography>
         )}
       </Container>
-    </>
+    </Box>
   );
 }
 
