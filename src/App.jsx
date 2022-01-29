@@ -1,16 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-import "./App.css"
-import Home from "./Components/Home"
+/* eslint-disable react-hooks/exhaustive-deps */
+import "./App.css";
+import {Location} from "./Components"
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="*" elment={<>404 Not Found</>} />
-      </Routes>
-    </Router>
+    <div className="App">
+      {/* <Header /> */}
+      <Location/>
+    </div>
   );
 }
 
