@@ -8,10 +8,19 @@ const text = {
   color: "#002764",
   fontFamily: "'Montserrat', sans-serif",
   fontSize: "1.5em",
-  mb:"0.5em"
+  mb: "0.5em",
 };
 
-const borderColors = ["#3A86FF", "#FF006E", "#FFBE0B", "#FB5607"];
+const borderColors = [
+  "#3A86FF",
+  "#FF006E",
+  "#FFBE0B",
+  "#FB5607",
+  "#3A86FF",
+  "#FF006E",
+  "#FFBE0B",
+  "#FB5607",
+];
 
 export function Location() {
   const [country, setCountry] = useState("");
@@ -83,17 +92,13 @@ export function Location() {
             <Typography
               sx={{ ...text }}
             >{`Weather in ${country.name}`}</Typography>
-            {weather.map((info) => (
+            {weather.map((info, i) => (
               <Box
                 sx={{
-                  border: `3px solid ${
-                    borderColors[
-                      Math.floor(Math.random() * borderColors.length)
-                    ]
-                  }`,
+                  border: `3px solid ${borderColors[i]}`,
                   borderRadius: "1em",
                   mb: "0.5em",
-                  p:"0.5em"
+                  p: "0.5em",
                 }}
               >
                 {/* <Typography>{`Date: ${new Date(info.dt).toString()}`}</Typography> */}
