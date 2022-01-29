@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FormControl, Box, InputLabel, Select, MenuItem } from "@mui/material";
 
 export function Input({ children, location, setInfo, options }) {
