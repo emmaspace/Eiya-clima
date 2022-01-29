@@ -66,7 +66,7 @@ export function Location() {
       >
         {!country ? (
           <Typography>Please select a country</Typography>
-        ) : !weather ? (
+        ) : weather.length===0 ? (
           <Typography>Loading...</Typography>
         ) : !error ? (
           <Box>
