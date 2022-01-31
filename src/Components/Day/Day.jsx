@@ -22,20 +22,22 @@ export function Day({ info }) {
             <Typography
               sx={text}
             >{`${info.weather[0].main}: ${info.weather[0].description}`}</Typography>
-            <Typography sx={text}>{`Temperature: ${info.temp.day}`}</Typography>
+            <Typography
+              sx={text}
+            >{`Temperature: ${info.temp.day}°C`}</Typography>
           </Box>
           <Box sx={{ display: "flex", gap: 1 }}>
-            <Typography sx={text}>{`Min: ${info.temp.min}`}</Typography>
-            <Typography sx={text}>{`Max: ${info.temp.max}`}</Typography>
+            <Typography sx={text}>{`Min: ${info.temp.min}°C`}</Typography>
+            <Typography sx={text}>{`Max: ${info.temp.max}°C`}</Typography>
             <Typography sx={text}>{`UVI: ${info.uvi}`}</Typography>
           </Box>
         </Box>
         <Box>
           {info.rain ? (
-            <Typography sx={text}>{`Precipitation: ${info.rain}%`}</Typography>
+            <Typography sx={text}>{`Precipitation: ${info.rain}mm`}</Typography>
           ) : null}
           {info.snow ? (
-            <Typography sx={text}>{`Snow: ${info.snow}%`}</Typography>
+            <Typography sx={text}>{`Snow: ${info.snow}mm`}</Typography>
           ) : null}
           <Typography sx={text}>{`Humidity: ${info.humidity}%`}</Typography>
           <Typography sx={text}>{`Clouds: ${info.clouds}`}</Typography>
