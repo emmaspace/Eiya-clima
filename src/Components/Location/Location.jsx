@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import { Input } from "../Input";
+import { Day } from "../Day/Day";
+import { useEffect, useState } from "react";
 import { Country /* , City */ } from "country-state-city";
 import { Container, Box, Typography } from "@mui/material";
 
@@ -100,17 +101,7 @@ export function Location() {
                   mb: "0.5em",
                   p: "0.5em",
                 }}
-              >
-                {/* <Typography>{`Date: ${new Date(info.dt).toString()}`}</Typography> */}
-                <Typography>{`${info.weather[0].main}: ${info.weather[0].description}`}</Typography>
-                <Typography>{`Temperature: ${info.temp.day}`}</Typography>
-                <Typography>{`Min: ${info.temp.min}`}</Typography>
-                <Typography>{`Max: ${info.temp.max}`}</Typography>
-                <Typography>{`UVI: ${info.uvi}`}</Typography>
-                <Typography>{`Precipitation: ${info.uvi}`}</Typography>
-                <Typography>{`Humidity: ${info.uvi}`}</Typography>
-                <Typography>{`Clouds: ${info.uvi}`}</Typography>
-              </Box>
+              ><Day info={info} key={info.dt}/></Box>
             ))}
           </Box>
         ) : (
